@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static ru.netology.date.DataHelper.*;
 
-public class DBtest {
+public class DBTest {
     @BeforeAll
     static void setUpAll(){
         SelenideLogger.addListener("allure", new AllureSelenide());

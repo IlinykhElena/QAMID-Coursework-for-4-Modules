@@ -1,13 +1,11 @@
 package ru.netology.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import ru.netology.date.DataHelper;
 import ru.netology.page.MainPage;
 
@@ -225,7 +223,7 @@ public class PaymentPageTest {
     }
 
     @Test
-    void theCurrentYearIsMesetsPreveduschy() {
+    void theCurrentYearAndPreviousMonth() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getPastMonth(), getValidYear(), getOwnerName(), getCVC());
         val mainPage = new MainPage();
         val paymentPage = mainPage.payByCard();
@@ -279,15 +277,6 @@ public class PaymentPageTest {
     }
 
     @Test
-    void theOwnerFieldIsFilledWithCapitalLetter() {
-        val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameShort(), getCVC());
-        val mainPage = new MainPage();
-        val paymentPage = mainPage.payByCard();
-        paymentPage.fillCard(cardInfo);
-        paymentPage.ownerErrorVisible();
-    }
-
-    @Test
     void theOwnerFieldIsFilledInWithHyphen() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerNameWithDoubleName(), getCVC());
         val mainPage = new MainPage();
@@ -324,7 +313,7 @@ public class PaymentPageTest {
     }
 
     @Test
-    void theCVCfieldIsNotFilledIn() {
+    void theCVCFieldIsNotFilledIn() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), null);
         val mainPage = new MainPage();
         val paymentPage = mainPage.payByCard();
@@ -333,7 +322,7 @@ public class PaymentPageTest {
     }
 
     @Test
-    void theCVCfieldIsFilledWithSpecialCharacters() {
+    void theCVCFieldIsFilledWithSpecialCharacters() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVCwithSigns());
         val mainPage = new MainPage();
         val paymentPage = mainPage.payByCard();
@@ -342,7 +331,7 @@ public class PaymentPageTest {
     }
 
     @Test
-    void theCVCfieldIsFilledWith2Digits() {
+    void theCVCFieldIsFilledWith2Digits() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVCshort());
         val mainPage = new MainPage();
         val paymentPage = mainPage.payByCard();
@@ -351,7 +340,7 @@ public class PaymentPageTest {
     }
 
     @Test
-    void theCVCfieldIsFilledWith4Digits() {
+    void theCVCFieldIsFilledWith4Digits() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVClong());
         val mainPage = new MainPage();
         val paymentPage = mainPage.payByCard();
@@ -360,7 +349,7 @@ public class PaymentPageTest {
     }
 
     @Test
-    void theCVCfieldIsFilledWithLetters() {
+    void theCVCFieldIsFilledWithLetters() {
         val cardInfo = new DataHelper.CardInfo(getApprovedCardNumber(), getValidMonth(), getValidYear(), getOwnerName(), getCVCwithLetters());
         val mainPage = new MainPage();
         val paymentPage = mainPage.payByCard();

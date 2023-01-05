@@ -54,7 +54,7 @@ public class DataHelper {
     }
     public static String getPastMonth(){
         LocalDate localDate = LocalDate.MIN;
-        return String.format("%02d",localDate.getMonthValue());
+        return String.format("%02d",localDate.getMonthValue() - 1);
     }
     public static String getTheFirstMonth(){
         LocalDate localDate = LocalDate.MAX;
